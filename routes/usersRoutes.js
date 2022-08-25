@@ -39,7 +39,7 @@ app.post(
     }else{
       const newUser = {
         ...req.body,
-        slug: slugify(req.body.name)
+        slug: slugify(req.body.name, { lower: true })
       }
       users.push(newUser)
       res.status(201).json(newUser)
