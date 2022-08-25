@@ -21,9 +21,9 @@ app.get('/:slug', checkIfExists, (req, res) => {
 
 app.post(
   '/',
-  body('name').exists().isLength({min: 4}).withMessage('Name is not long enough'),
-  body('password').exists().isLength({min: 8}).withMessage(passwordLessMessage).isLength({max: 20}).withMessage(passwordMoreMessage),
-  body('email').exists().isEmail().withMessage('Not an email'),
+  body('name').isLength({min: 4}).withMessage('Name is not long enough'),
+  body('password').isLength({min: 8}).withMessage(passwordLessMessage).isLength({max: 20}).withMessage(passwordMoreMessage),
+  body('email').isEmail().withMessage('Not an email'),
   body('city').exists().custom(value => {
     const slugified = slugify(value, { lower : true})
     const slugifiedCities = ["paris", "tokyo", "los-angeles"]
